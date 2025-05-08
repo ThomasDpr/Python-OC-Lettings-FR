@@ -26,6 +26,7 @@ def handler500(request):
     """
     return render(request, '500.html', status=500)
 
+
 # Pour sentry pour tester la configuration
 def trigger_error(request):
     """Vue de test pour vérifier la configuration de Sentry."""

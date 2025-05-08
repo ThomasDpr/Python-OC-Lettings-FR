@@ -1,5 +1,4 @@
 """Tests pour les vues de l'application lettings."""
-from django.http import Http404
 from django.test import Client, RequestFactory, TestCase
 from django.urls import reverse
 
@@ -8,13 +7,12 @@ from lettings.views import index, letting
 
 
 class TestLettingsViews(TestCase):
+
     """Tests pour les vues de l'application lettings."""
-    
     def setUp(self):
         """Initialisation avant chaque test."""
         self.client = Client()
         self.factory = RequestFactory()
-        
         # Créer une adresse et une location pour les tests
         self.address = Address.objects.create(
             number=123,
@@ -36,12 +34,11 @@ class TestLettingsViews(TestCase):
         response = self.client.get(path)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test Letting")
-        
         # Test direct de la fonction de vue
         request = self.factory.get(path)
         response = index(request)
         self.assertEqual(response.status_code, 200)
-    
+
     def test_letting_detail_view(self):
         """Test que la vue de détail d'une location fonctionne correctement."""
         # Test avec Client
@@ -50,12 +47,10 @@ class TestLettingsViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test Letting")
         self.assertContains(response, "123 Test Street")
-        
-        # Test direct de la fonction de vue
         request = self.factory.get(path)
         response = letting(request, letting_id=self.letting.id)
         self.assertEqual(response.status_code, 200)
-    
+
     def test_letting_detail_view_with_invalid_id(self):
         """Test que la vue de détail avec un ID inexistant génère une erreur."""
         with self.assertRaises(Letting.DoesNotExist):
