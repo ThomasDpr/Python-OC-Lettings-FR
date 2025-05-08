@@ -1,33 +1,56 @@
 import os
-
 from pathlib import Path
+
+import sentry_sdk
+from dotenv import load_dotenv
+from sentry_sdk.integrations.django import DjangoIntegration
+
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+# Configuration Sentry
+sentry_sdk.init(
+    dsn=os.environ.get("SENTRY_DSN", ""),  # Récupère la DSN depuis les variables d'environnement
+    integrations=[
+        DjangoIntegration(),
+    ],
+    
+    # Définit le pourcentage de transactions à capturer pour la surveillance des performances
+    # Dans un environnement de production, une valeur inférieure est recommandée
+    traces_sample_rate=1.0,
+    
+    # Si vous souhaitez suivre les exceptions de session de formulaire
+    send_default_pii=True,
+    
+    # Par défaut, le déploiement d'événements est envoyé avec le commit courant
+    # et les informations de version du package
+    enable_tracing=True,
+)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Application definition
 
 INSTALLED_APPS = [
-    'oc_lettings_site.apps.OCLettingsSiteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'oc_lettings_site',
+    'lettings',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -111,4 +134,4 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static",]
+STATICFILES_DIRS = [BASE_DIR / "static"]

@@ -1,0 +1,18 @@
+[run]
+source = lettings,profiles,oc_lettings_site
+omit = 
+    */migrations/*
+    
+    */venv/*
+    */settings.py
+    */wsgi.py
+    */asgi.py
+    */apps.py
+    manage.py
+
+[report]
+precision = 0
+exclude_lines =
+    pragma: no cover
+    def __str__
+    pass
