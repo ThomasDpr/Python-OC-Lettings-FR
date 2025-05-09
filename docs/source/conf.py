@@ -45,5 +45,5 @@ html_static_path = ['_static']
 
 # Configuration supplémentaire pour améliorer la documentation
 html_title = 'Documentation Python-OC-Lettings-FR'
-html_logo = None  # Vous pouvez ajouter un logo ici si vous en avez un
-html_favicon = None  # Vous pouvez ajouter un favicon ici
+html_logo = None
+html_favicon = None
