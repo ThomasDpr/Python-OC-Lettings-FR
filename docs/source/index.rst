@@ -13,7 +13,7 @@ Cette documentation décrit le projet Python-OC-Lettings-FR, une application web
    :caption: Contenu:
 
    installation
-   architecture
+   destructure
    utilisation
    deploiement
    api
