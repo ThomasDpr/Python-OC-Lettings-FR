@@ -7,3 +7,6 @@ six
 python-dotenv
 whitenoise
 gunicorn
+sphinx
+sphinx-rtd-theme
+recommonmark
