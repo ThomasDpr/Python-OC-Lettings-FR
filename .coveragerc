@@ -1,7 +1,7 @@
 [run]
 source = lettings,profiles,oc_lettings_site
 omit = 
-    */migrations/*
+    **/migrations/*
     
     */venv/*
     */settings.py
@@ -9,6 +9,8 @@ omit =
     */asgi.py
     */apps.py
     manage.py
+    **/tests/*
+    **/__init__.py
 
 [report]
 precision = 0
