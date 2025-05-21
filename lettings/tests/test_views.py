@@ -1,4 +1,5 @@
 """Tests pour les vues de l'application lettings."""
+from django.http import Http404
 from django.test import Client, RequestFactory, TestCase
 from django.urls import reverse
 
@@ -53,7 +54,7 @@ class TestLettingsViews(TestCase):
 
     def test_letting_detail_view_with_invalid_id(self):
         """Test que la vue de détail avec un ID inexistant génère une erreur."""
-        with self.assertRaises(Letting.DoesNotExist):
+        with self.assertRaises(Http404):
             path = reverse('lettings:letting', kwargs={'letting_id': 9999})  # ID qui n'existe pas
             request = self.factory.get(path)
             letting(request, letting_id=9999)

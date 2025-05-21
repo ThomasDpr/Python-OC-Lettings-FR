@@ -21,9 +21,6 @@ sentry_sdk.init(
     traces_sample_rate=1.0,
     # Si vous souhaitez suivre les exceptions de session de formulaire
     send_default_pii=True,
-    # Par défaut, le déploiement d'événements est envoyé avec le commit courant
-    # et les informations de version du package
-    enable_tracing=True,
 )
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -125,7 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
