@@ -1,5 +1,5 @@
 """Tests pour les modèles de l'application lettings."""
-import pytest
+
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 

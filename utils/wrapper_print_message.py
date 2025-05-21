@@ -1,7 +1,5 @@
 from functools import wraps
 
-import pytest
-
 
 def print_test_message(message):
     def decorator(func):
