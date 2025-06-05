@@ -15,7 +15,7 @@ Prérequis
 
    .. code-block:: bash
 
-      git clone https://github.com/[username]/Python-OC-Lettings-FR.git
+      git clone https://github.com/thomasdpr/Python-OC-Lettings-FR.git
       cd Python-OC-Lettings-FR
 
 2. **Créer un environnement virtuel**
