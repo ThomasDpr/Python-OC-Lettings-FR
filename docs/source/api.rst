@@ -1,11 +1,14 @@
 API
 ===
 
-Documentation de l'API du projet.
+Documentation des modules principaux du projet.
+
+Applications
+------------
 
 .. toctree::
    :maxdepth: 2
 
-   modules/oc_lettings_site
-   modules/lettings
-   modules/profiles
+   api/lettings
+   api/profiles
+   api/core
